@@ -24,6 +24,9 @@ class TaskViewListSet(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]
 
     def list(self, request):
+        """
+        List Downs all Tasks created by a user
+        """
         paginator = PageNumberPagination()
         paginator.page_size = 3
         user_id = request.user.id
@@ -39,6 +42,9 @@ class TaskViewListSet(viewsets.ViewSet):
 
 
 class RegisterView(generics.CreateAPIView):
+    """
+    Handles the User Registration and login functionality
+    """
     permission_classes = [AllowAny]
 
     def post(self, request, *args, **kwargs):
@@ -61,9 +67,16 @@ class RegisterView(generics.CreateAPIView):
 
 
 class TaskViewSet(APIView):
+    """
+    Implements the CRUD operations
+    """
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
+        """
+        For creating a new task
+        """
+
         data = request.data
         user_id = request.user.id
 
@@ -75,6 +88,10 @@ class TaskViewSet(APIView):
         )
 
     def get(self, request):
+        """
+        For fetching a task
+        """
+
         pk = None
         user_id = request.user.id
         task = find_one(user_id=user_id, id=request.query_params.get('id'))
@@ -89,6 +106,10 @@ class TaskViewSet(APIView):
         )
 
     def put(self, request):
+        """
+        For updating a task
+        """
+
         data = request.data
         user_id = request.user.id
         pk = data.get('id')
@@ -106,6 +127,10 @@ class TaskViewSet(APIView):
         )
 
     def delete(self, request):
+        """
+        For deleting a task
+        """
+
         user_id = request.user.id
         result = delete_one(user_id=user_id, id=request.query_params.get('id'))
 
