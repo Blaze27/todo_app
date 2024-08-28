@@ -24,7 +24,6 @@ class TaskViewListSet(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]
 
     def list(self, request):
-        print("Inside list")
         paginator = PageNumberPagination()
         paginator.page_size = 3
         user_id = request.user.id
@@ -65,7 +64,6 @@ class TaskViewSet(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
-        print("Inside post")
         data = request.data
         user_id = request.user.id
 
@@ -78,7 +76,6 @@ class TaskViewSet(APIView):
 
     def get(self, request):
         pk = None
-        print("Inside get")
         user_id = request.user.id
         task = find_one(user_id=user_id, id=request.query_params.get('id'))
 
@@ -92,7 +89,6 @@ class TaskViewSet(APIView):
         )
 
     def put(self, request):
-        print("Inside put")
         data = request.data
         user_id = request.user.id
         pk = data.get('id')
@@ -110,7 +106,6 @@ class TaskViewSet(APIView):
         )
 
     def delete(self, request):
-        print("Inside delete")
         user_id = request.user.id
         result = delete_one(user_id=user_id, id=request.query_params.get('id'))
 
