@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -127,7 +127,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ########################################################
 
 MONGO_DB_NAME = 'todo_db'
-MONGO_DB_HOST = 'localhost'
+MONGO_DB_HOST = 'mongo-db-service'
 MONGO_DB_PORT = 27017
 
 AUTHENTICATION_BACKENDS = [
