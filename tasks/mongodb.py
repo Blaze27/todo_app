@@ -10,10 +10,8 @@ class MongoDBClient:
     def get_client(cls):
         if cls._client is None:
             cls._client = MongoClient(
-                host=os.getenv('MONGO_HOST', settings.MONGO_DB_HOST),
-                port=int(os.getenv('MONGO_PORT', settings.MONGO_DB_PORT)),
-                username=os.getenv('MONGO_USER', 'root'),
-                password=os.getenv('MONGO_PASSWORD', 'example')
+                host=settings.MONGO_DB_HOST,
+                port=settings.MONGO_DB_PORT,
             )
         return cls._client
 
